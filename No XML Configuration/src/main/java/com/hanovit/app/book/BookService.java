@@ -25,5 +25,13 @@ public class BookService {
     public Book find(String title) {
         return this.bookRepository.find(title);
     }
+    
+    public Book save(Book book) {
+        return this.bookRepository.save(book);
+    }
+    
+    public boolean delete(String title) {
+        return this.bookRepository.delete(title);
+    }
 
 }
