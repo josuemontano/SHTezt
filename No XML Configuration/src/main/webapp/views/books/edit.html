@@ -1,0 +1,15 @@
+<form novalidate ng-submit="save()">
+    <div>
+        <label for="title">Title</label>
+        <input class="form-control" type="text" ng-model="book.title" id="title"/>
+    </div>
+    
+    <div>
+        <label for="ISBN">ISBN</label>
+        <input class="form-control" type="text" ng-model="book.ISBN" id="ISBN"/>
+    </div>
+    <hr>
+    <div>
+        <button id="save">Save book</button>
+    </div>
+</form>
