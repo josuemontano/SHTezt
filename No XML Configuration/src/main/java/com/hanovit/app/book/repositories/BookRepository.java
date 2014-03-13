@@ -2,7 +2,6 @@ package com.hanovit.app.book.repositories;
 
 import com.hanovit.app.book.entities.Book;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,7 +23,6 @@ public class BookRepository implements IBookRepository {
     }
 
     @Override
-    @Transactional
     public List<Book> findAll() {
         Criteria criteria = getCurrentSession().createCriteria(Book.class);
         return criteria.list();
@@ -32,8 +30,31 @@ public class BookRepository implements IBookRepository {
 
     @Override
     public Book find(String title) {
-        Criteria criteria = getCurrentSession().createCriteria(Book.class, title);
-        return (Book)criteria.uniqueResult();
+        return (Book)getCurrentSession().get(Book.class, title);
+    }
+    
+    @Override
+    public Book save(Book book) {
+        Book bookRef = find(book.getTitle());
+        if (bookRef == null) {
+            getCurrentSession().save(book);
+            return book;
+        } else {
+            bookRef.setTitle(book.getTitle());
+            getCurrentSession().update(bookRef);
+            return bookRef;
+        }
+    }
+    
+    @Override
+    public boolean delete(String title) {
+        Book bookRef = find(title);
+        if (bookRef != null) {
+            getCurrentSession().delete(bookRef);
+            return true;
+        } else {
+            return false;
+        }
     }
     
 }
