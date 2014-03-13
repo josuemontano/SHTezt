@@ -7,9 +7,10 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+
 
 /**
  *
@@ -26,7 +27,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[]{ "com.hanovit.app" });
+        sessionFactory.setPackagesToScan(new String[]{"com.hanovit.app"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         
         return sessionFactory;
@@ -39,6 +40,7 @@ public class HibernateConfig {
         dataSource.setUrl(env.getProperty("database.url"));
         dataSource.setUsername(env.getProperty("database.username"));
         dataSource.setPassword(env.getProperty("database.password"));
+        dataSource.setValidationQuery(env.getProperty("database.validationQuery"));
         
         return dataSource;
     }
@@ -55,7 +57,7 @@ public class HibernateConfig {
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getProperty("database.dialect"));
-        properties.put("hibernate.show_sql", true);
+        properties.put("hibernate.show_sql", false);
         
         return properties;
     }
