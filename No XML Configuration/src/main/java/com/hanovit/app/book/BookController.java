@@ -38,4 +38,19 @@ public class BookController {
         else              return new ResponseEntity<Book>(book, HttpStatus.OK);
     }
     
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Book> update(@PathVariable("id") String title, @RequestBody Book book) {
+        //book.setTitle(title);
+        Book uBook = this.bookService.save(book);
+        if (uBook == null) return new ResponseEntity<Book>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Book>(HttpStatus.OK);
+        //return new ResponseEntity<Book>(HttpStatus.FORBIDDEN);
+    }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Book> delete(@PathVariable("id") String title) {
+        if (this.bookService.delete(title)) return new ResponseEntity<Book>(HttpStatus.OK);
+        return new ResponseEntity<Book>(HttpStatus.FORBIDDEN);
+    }
+    
 }
