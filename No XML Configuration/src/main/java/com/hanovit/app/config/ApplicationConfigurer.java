@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author josuemontano
  */
 @Configuration
-@ComponentScan("com.hanovit.app.config")
+@ComponentScan("com.hanovit.app")
 @EnableWebMvc
 @EnableTransactionManagement
 @Import({HibernateConfig.class})
