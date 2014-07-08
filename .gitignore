@@ -1,3 +1,12 @@
+.project
+.metadata
+.classpath
+.idea
+*.iml
+nbactions.xml
+nb-configuration.xml
+*.orig
+profiles.xml
+.project
 .DS_Store
-/No XML Configuration/target/
-/XML Configuration/target/
+target
