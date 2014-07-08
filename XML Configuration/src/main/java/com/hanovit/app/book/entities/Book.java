@@ -1,20 +1,24 @@
 package com.hanovit.app.book.entities;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
- * @author josuemontano
+ * @author Josue Montano
  */
 @Entity
 @Table(name = "Books")
 public class Book implements Serializable {
     
     @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Column(name = "Title")
     private String title;
     
@@ -24,8 +28,16 @@ public class Book implements Serializable {
     public Book() {
     }
 
-    public Book(String title) {
-        this.title = title;
+    public Book(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -43,5 +55,22 @@ public class Book implements Serializable {
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
-    
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(this.id).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Book other = (Book) obj;
+        return new EqualsBuilder().append(this.id, other.id).isEquals();
+    }
+
 }
