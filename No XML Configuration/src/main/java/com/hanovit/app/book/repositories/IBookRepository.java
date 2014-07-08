@@ -5,13 +5,13 @@ import java.util.List;
 
 /**
  *
- * @author josuemontano
+ * @author Josue Montano
  */
 public interface IBookRepository {
     
     public List<Book> findAll();
     public Book find(String title);
     public Book save(Book book);
-    public booelan delete(String title);
+    public boolean delete(String title);
     
 }
