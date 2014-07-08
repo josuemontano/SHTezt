@@ -10,8 +10,8 @@ import java.util.List;
 public interface IBookRepository {
     
     public List<Book> findAll();
-    public Book find(String title);
+    public Book find(int id);
     public Book save(Book book);
-    public boolean delete(String title);
+    public boolean delete(int id);
     
 }
