@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author josuemontano
+ * @author Josue Montano
  */
 @Repository
 public class BookRepository implements IBookRepository {
@@ -29,13 +29,13 @@ public class BookRepository implements IBookRepository {
     }
 
     @Override
-    public Book find(String title) {
-        return (Book)getCurrentSession().get(Book.class, title);
+    public Book find(int id) {
+        return (Book)getCurrentSession().get(Book.class, id);
     }
     
     @Override
     public Book save(Book book) {
-        Book bookRef = find(book.getTitle());
+        Book bookRef = find(book.getId());
         if (bookRef == null) {
             getCurrentSession().save(book);
             return book;
@@ -47,8 +47,8 @@ public class BookRepository implements IBookRepository {
     }
     
     @Override
-    public boolean delete(String title) {
-        Book bookRef = find(title);
+    public boolean delete(int id) {
+        Book bookRef = find(id);
         if (bookRef != null) {
             getCurrentSession().delete(bookRef);
             return true;
