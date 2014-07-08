@@ -13,6 +13,8 @@
         <spring.version>4.0.2.RELEASE</spring.version>
         <hibernate.version>4.3.4.Final</hibernate.version>
         <commons-dbcp.version>2.0</commons-dbcp.version>
+        
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -100,30 +102,46 @@
             <artifactId>postgresql</artifactId>
             <version>9.3-1101-jdbc4</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.18.0-GA</version>
-        </dependency>
     </dependencies>
 
     <build>
         <finalName>SHTezt</finalName>
         
         <plugins>
+            <!-- Jetty -->
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
+                <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.9.v20130131</version>
+                <version>9.0.6.v20130930</version>
+                <configuration>
+                    <httpConnector>
+                        <port>8080</port>
+                        <host>localhost</host>
+                    </httpConnector>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                </configuration>
             </plugin>
 
+            <!-- Compiler -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                    <optimize>true</optimize>
+                    <debug>true</debug>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+
+            <!-- WAR -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
         </plugins>
