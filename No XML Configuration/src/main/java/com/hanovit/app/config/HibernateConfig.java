@@ -14,14 +14,14 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 /**
  *
- * @author josuemontano
+ * @author Josue Montano
  */
 @Configuration
 @PropertySource("classpath:database.properties")
 public class HibernateConfig {
     
     @Resource
-    private Environment env;
+    public Environment env;
     
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -54,7 +54,7 @@ public class HibernateConfig {
     }
 
     @Bean
-    private Properties hibernateProperties() {
+    public Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getProperty("database.dialect"));
         properties.put("hibernate.show_sql", false);
