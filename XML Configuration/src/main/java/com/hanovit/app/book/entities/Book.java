@@ -11,12 +11,15 @@ import javax.persistence.Table;
  * @author josuemontano
  */
 @Entity
-@Table(name = "books")
+@Table(name = "Books")
 public class Book implements Serializable {
     
     @Id
-    @Column(name = "title")
+    @Column(name = "Title")
     private String title;
+    
+    @Column(name = "ISBN")
+    private String ISBN;
 
     public Book() {
     }
@@ -31,6 +34,14 @@ public class Book implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getISBN() {
+        return ISBN;
+    }
+    
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
     }
     
 }
