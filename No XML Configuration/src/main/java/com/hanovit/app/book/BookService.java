@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 /**
  *
- * @author josuemontano
+ * @author Josue Montano
  */
 @Service("bookService")
 public class BookService {
@@ -22,16 +22,19 @@ public class BookService {
         return this.bookRepository.findAll();
     }
 
-    public Book find(String title) {
-        return this.bookRepository.find(title);
+    @Transactional
+    public Book find(int id) {
+        return this.bookRepository.find(id);
     }
     
+    @Transactional
     public Book save(Book book) {
         return this.bookRepository.save(book);
     }
     
-    public boolean delete(String title) {
-        return this.bookRepository.delete(title);
+    @Transactional
+    public boolean delete(int id) {
+        return this.bookRepository.delete(id);
     }
 
 }
