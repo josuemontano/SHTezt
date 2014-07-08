@@ -1,9 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="SHTezt">
     <head>
-        <title>HSTezt Application</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Josue Montano">
+        <meta name="description" content="">
+    
+        <title>SHTezt Application</title>
+        
+        <link rel="stylesheet" href="css/style.css">
     </head>
+    
     <body>
-        <p>This is a test</p>
+        <div class="content">
+            <div ng-view></div>
+        </div>
+        
+        <script src="lib/angularjs/angular.min.js"></script>
+        <script src="lib/angularjs/angular-route.min.js"></script>
+        <script src="lib/angularjs/angular-resource.min.js"></script>
+
+        <script src="js/app.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
     </body>
 </html>
